@@ -205,11 +205,11 @@ if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	else
 		if [ ! -f "glibc-$GLIBC_VERSION.tar.bz2" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.bz2; fi
 		tar xf glibc-$GLIBC_VERSION.tar.bz2
+		rm ./*.tar.*
 	fi
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; fi
