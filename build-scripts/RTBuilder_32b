@@ -186,7 +186,7 @@ if [ ! -d "gcc-$GCCBASE_VERSION" ]; then
 	rm ./*.tar.* || true
 	if [ "$GCCBASE_VERSION" = "6.3.0" ]; then sed -i "1474s/.*/      || xloc.file[0] == '\\\0' || xloc.file[0] == '\\\xff'/" ./gcc/ubsan.c; fi #apply patch
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 fi
 if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	if [ ! -f "binutils-$BINUTILS_VERSION.tar.bz2" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.bz2; fi
@@ -194,7 +194,7 @@ if [ ! -d "binutils-$BINUTILS_VERSION" ]; then
 	cd binutils-$BINUTILS_VERSION || exit
 	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 fi
 if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	# Download patched Glibc 2.31 if GCC 10 series are being built
@@ -209,7 +209,7 @@ if [ ! -d "glibc-$GLIBC_VERSION" ]; then
 	cd glibc-$GLIBC_VERSION || exit
 	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 fi
 if [ ! -d "gdb-$GDB_VERSION" ]; then
 	if [ ! -f "gdb-$GDB_VERSION.tar.xz" ]; then wget -q --no-check-certificate https://ftp.gnu.org/gnu/gdb/gdb-$GDB_VERSION.tar.xz; fi
@@ -217,7 +217,7 @@ if [ ! -d "gdb-$GDB_VERSION" ]; then
 	cd gdb-$GDB_VERSION || exit
 	mkdir -p build
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 fi
 if [ ! -d "gcc-$GCC_VERSION" ]; then
 	# Download patched GCC 10 series for bullseye
@@ -233,9 +233,9 @@ if [ ! -d "gcc-$GCC_VERSION" ]; then
 	mkdir -p build
 	sed -i contrib/download_prerequisites -e '/base_url=/s/ftp/http/'
 	contrib/download_prerequisites
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 	cd "$DOWNLOADDIR" || exit
-	rm ./*.tar.* || true
+	rm -f ./*.tar.*
 fi
 
 echo "Setting up paths..."
